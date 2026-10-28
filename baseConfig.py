@@ -5,15 +5,33 @@ def main():
     hostname = input("Enter hostname (e.g. MK1): ").strip()
     banner_message = input("Enter banner message (e.g. Morgenkrydder1): ").strip()
 
+
     config = f"""!basic config
 enable
-conf t !enter global config layer
-hostname {hostname} !skriv navn
+conf t 
+hostname {hostname} 
 enable secret class
 service password-encryption
 login
-banner moto "{banner_message}" !skriv unik banner besked
+banner motd "{banner_message}" 
 no ip domain-lookup
+
+line console 0
+password cisco
+login
+exec-timeout 2
+
+line vty 0 15
+password CiscoSux
+exec timeout 3
+
+!interface vlan 1
+!ip address 192.168.40.75 255.255.255.0 
+!description Morgenkrydder 2 forbindelsen til PC
+!no shutdown
+
+exit
+default-gateway 192.168.40.1
 
 """
 
