@@ -136,6 +136,7 @@ enable secret Passw0rd
 service password-encryption
 login
 banner motd "{banner_message}" 
+banner motd "{banner_message}" 
 no ip domain-lookup
 line console 0
  logging synchronous 
